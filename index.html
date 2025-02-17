@@ -27,12 +27,25 @@
         font-size: 3.5rem;
         font-family: Georgia, 'Times New Roman', Times, serif;
       }
-      header nav {
+      nav {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: 1rem;
         padding: 0 0 30px 0;
       }
-      header a {
+
+      nav a {
+        text-decoration: none;
         color: white;
-        padding: 20px;
+        font-weight: 100;
+      }
+
+      @media (max-width: 600px) {
+        nav {
+          flex-direction: column;
+          align-items: center;
+        }
       }
       @keyframes sunrise {
         0% {
@@ -84,12 +97,56 @@
       img {
         border-radius: 3%;
       }
+      .hamburger {
+        display: none; /* Hidden by default */
+        background: none;
+        border: none;
+        cursor: pointer;
+        width: 40px;
+        height: 40px;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+      }
+
+      @media (max-width: 600px) {
+        .hamburger {
+          display: block; /* Show only on mobile */
+        }
+
+        nav {
+          display: none;
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .show {
+          display: flex;
+        }
+      }
     </style>
   </head>
   <body>
     <header>
       <h1>Richmond Park Stewards</h1>
-      <nav>
+      <button class="hamburger" onclick="toggleMenu()">
+        <svg
+          width="40"
+          height="40"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="white"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+
+      <nav id="menu">
         <a href="#about">What We Do</a>
         <a href="#projects">Our Projects</a>
         <a href="#updates">Latest Updates</a>
@@ -170,5 +227,11 @@
       </section>
       <footer>© Richmond Park Stewards</footer>
     </main>
+
+    <script>
+      function toggleMenu() {
+        document.getElementById('menu').classList.toggle('show')
+      }
+    </script>
   </body>
 </html>
